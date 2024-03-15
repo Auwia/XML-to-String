@@ -1,0 +1,15 @@
+def xml_to_java_string(xml_path):
+    with open(xml_path, 'r') as file:
+        xml_lines = file.readlines()
+    
+    java_string = ""
+    for line in xml_lines:
+        escaped_line = line.replace("\"", "\\\"").strip()
+        java_string += "\"" + escaped_line + "\\n\" +\n"
+    
+    return java_string[:-3]  # Rimuove l'ultimo "+\n"
+
+# Usa la funzione
+xml_path = "path/to/your/xmlfile.xml"
+java_string = xml_to_java_string(xml_path)
+print(java_string)
